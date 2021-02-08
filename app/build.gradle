@@ -54,4 +54,8 @@ dependencies {
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.3"
     androidTestImplementation "androidx.navigation:navigation-testing:2.3.3"
 
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+
 }
