@@ -18,6 +18,10 @@ class ListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentListBinding.inflate(inflater, container, false)
 
+        viewModel.response.observe(viewLifecycleOwner, { response ->
+            
+        })
+
         return binding.root
     }
 
