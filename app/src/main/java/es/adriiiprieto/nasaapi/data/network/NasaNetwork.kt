@@ -20,14 +20,9 @@ class NasaNetwork {
         service = retrofit.create(NasaService::class.java)
     }
 
-    fun requestNasaImages(pictureType: String): NasaResponseDataModel {
+    suspend fun requestNasaImages(pictureType: String): NasaResponseDataModel {
         loadRetrofit()
-        val repos: Call<NasaResponseDataModel> = service.getNasaImages(pictureType)
-        return repos.execute().body() ?: throw ApiException()
+        return service.getNasaImages(pictureType)
     }
-
-
 }
 
-
-class ApiException() : Exception()
