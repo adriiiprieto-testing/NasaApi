@@ -9,15 +9,19 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import es.adriiiprieto.nasaapi.base.BaseState
 import es.adriiiprieto.nasaapi.databinding.FragmentListBinding
+import retrofit2.HttpException
+import java.net.UnknownHostException
 
 class ListFragment : Fragment() {
 
     lateinit var binding: FragmentListBinding
 
-    val viewModel: ListViewModel by viewModels()
+    private val viewModel: ListViewModel by viewModels()
 
     lateinit var adapter: ListAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +29,37 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListBinding.inflate(inflater, container, false)
+
+        // Observer
+        viewModel.getState().observe(viewLifecycleOwner, { state ->
+            when (state) {
+                is BaseState.Error -> {
+                    binding.fragmentListProgressBar.visibility = View.GONE
+                    adapter.updateList(listOf())
+
+                    val msg = when (state.dataError) {
+                        is HttpException -> "Fatal error: " + state.dataError.code().toString()
+                        is UnknownHostException -> "No tienes conexión a internet"
+                        else -> "Error genérico"
+                    }
+                    MaterialAlertDialogBuilder(requireActivity())
+                        .setTitle("Error")
+                        .setMessage(msg)
+                        .setPositiveButton("Retry") { dialog, which ->
+                            viewModel.requestInformation()
+                        }
+                        .show()
+                }
+                is BaseState.Loading -> {
+                    binding.fragmentListProgressBar.visibility = View.VISIBLE
+                }
+                is BaseState.Normal -> {
+                    binding.fragmentListProgressBar.visibility = View.GONE
+                    binding.fragmentListSwipeRefreshLayout.isRefreshing = false
+                    adapter.updateList((state.data as ListState).picturesList)
+                }
+            }
+        })
 
         // Set recycler view
         adapter = ListAdapter(listOf(), requireActivity())
@@ -40,25 +75,6 @@ class ListFragment : Fragment() {
             adapter.updateList(listOf())
             viewModel.requestInformation()
         }
-
-        // Observers
-        viewModel.getResponse().observe(viewLifecycleOwner, { response ->
-            binding.fragmentListSwipeRefreshLayout.isRefreshing = false
-            adapter.updateList(response)
-        })
-        viewModel.getError().observe(viewLifecycleOwner, { error ->
-            adapter.updateList(listOf())
-            MaterialAlertDialogBuilder(requireActivity())
-                .setTitle("Error")
-                .setMessage(error)
-                .setPositiveButton("Retry") { dialog, which ->
-                    viewModel.requestInformation()
-                }
-                .show()
-        })
-        viewModel.isLoading().observe(viewLifecycleOwner, { loading ->
-            binding.fragmentListProgressBar.visibility = if (loading) View.VISIBLE else View.GONE
-        })
 
         // Request information
         viewModel.requestInformation()

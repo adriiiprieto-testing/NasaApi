@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import es.adriiiprieto.nasaapi.base.BaseState
 import es.adriiiprieto.nasaapi.data.NasaRepository
 import es.adriiiprieto.nasaapi.data.model.Item
 import kotlinx.coroutines.Dispatchers
@@ -13,36 +14,18 @@ import java.net.UnknownHostException
 
 class ListViewModel : ViewModel() {
 
-    private val response = MutableLiveData<List<Item>>()
-    fun getResponse(): LiveData<List<Item>> = response
-
-    private val error = MutableLiveData<String>()
-    fun getError(): LiveData<String> = error
-
-    private val loading = MutableLiveData<Boolean>()
-    fun isLoading(): LiveData<Boolean> = loading
-
-
+    private val state = MutableLiveData<BaseState>()
+    fun getState(): LiveData<BaseState> = state
 
     fun requestInformation() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                loading.postValue(true)
+                state.postValue(BaseState.Loading())
                 val items = NasaRepository().requestNasaPictures("sun")
-                response.postValue(items)
-                loading.postValue(false)
+                state.postValue(BaseState.Normal(ListState(items)))
             } catch (e: Exception) {
-                loading.postValue(false)
-                when (e) {
-                    is HttpException -> {
-                        error.postValue("Fatal error: " + e.code().toString())
-                    }
-                    is UnknownHostException -> {
-                        error.postValue("No tienes conexión a internet")
-                    }
-                }
+                state.postValue(BaseState.Error(e))
             }
         }
     }
-
 }
