@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import es.adriiiprieto.nasaapi.base.BaseState
+import es.adriiiprieto.nasaapi.base.NetworkManager
+import es.adriiiprieto.nasaapi.base.NoInternetConnectivity
 import es.adriiiprieto.nasaapi.databinding.FragmentListBinding
 import retrofit2.HttpException
 import java.net.UnknownHostException
@@ -40,12 +42,13 @@ class ListFragment : Fragment() {
                     val msg = when (state.dataError) {
                         is HttpException -> "Fatal error: " + state.dataError.code().toString()
                         is UnknownHostException -> "No tienes conexión a internet"
+                        is NoInternetConnectivity -> "Encienda los datos móviles o Wi-Fi e inténtelo de nuevo"
                         else -> "Error genérico"
                     }
                     MaterialAlertDialogBuilder(requireActivity())
                         .setTitle("Error")
                         .setMessage(msg)
-                        .setPositiveButton("Retry") { dialog, which ->
+                        .setPositiveButton("Reintentar") { dialog, which ->
                             viewModel.requestInformation()
                         }
                         .show()
