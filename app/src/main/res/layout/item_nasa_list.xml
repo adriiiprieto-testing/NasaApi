@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.fragment.list.ListFragment">
+
+        <ImageView
+            android:id="@+id/itemNasaListImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/itemNasaListTextViewTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_bold"
+            app:layout_constraintBottom_toTopOf="@+id/itemNasaListTextViewDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/itemNasaListImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Esto es un ejemplo de título" />
+
+        <TextView
+            android:id="@+id/itemNasaListTextViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito"
+            android:maxLines="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/itemNasaListImageView"
+            app:layout_constraintTop_toBottomOf="@+id/itemNasaListTextViewTitle"
+            tools:text="Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción Esto es un ejemplo de descripción " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
