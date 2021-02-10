@@ -1,6 +1,7 @@
 package es.adriiiprieto.nasaapi.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class NasaResponseDataModel(
     val collection: Collection
@@ -19,7 +20,7 @@ data class Item(
     val data: List<Data>,
     val href: String,
     val links: List<Link>
-)
+) : Serializable
 
 data class LinkX(
     val href: String,

@@ -19,5 +19,9 @@
         android:id="@+id/detailFragment"
         android:name="es.adriiiprieto.nasaapi.ui.fragment.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail"/>
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="item"
+            app:argType="es.adriiiprieto.nasaapi.data.model.Item" />
+    </fragment>
 </navigation>
