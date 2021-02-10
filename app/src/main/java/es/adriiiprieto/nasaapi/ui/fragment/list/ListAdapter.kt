@@ -9,7 +9,7 @@ import es.adriiiprieto.nasaapi.R
 import es.adriiiprieto.nasaapi.data.model.Item
 import es.adriiiprieto.nasaapi.databinding.ItemNasaListBinding
 
-class ListAdapter(private var dataSet: List<Item>, private val context: Context) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter(private var dataSet: List<Item>, private val context: Context, private val listener: (item: Item) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemNasaListBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -18,9 +18,9 @@ class ListAdapter(private var dataSet: List<Item>, private val context: Context)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.binding.apply {
-            val item = dataSet[position]
+        val item = dataSet[position]
 
+        viewHolder.binding.apply {
             itemNasaListTextViewTitle.text = item.data.firstOrNull()?.title ?: "N/A"
             itemNasaListTextViewDescription.text = item.data.firstOrNull()?.description_508 ?: "N/A"
 
@@ -29,6 +29,10 @@ class ListAdapter(private var dataSet: List<Item>, private val context: Context)
                 .centerCrop()
                 .placeholder(R.drawable.ic_navegador)
                 .into(itemNasaListImageView)
+        }
+
+        viewHolder.itemView.setOnClickListener {
+            listener.invoke(item)
         }
     }
 
