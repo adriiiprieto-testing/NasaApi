@@ -63,7 +63,7 @@ class ListFragment : Fragment() {
     private fun setupView() {
         // Set recycler view
         adapter = ListAdapter(listOf(), requireActivity()) { item ->
-            findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(item))
+            findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(item.copy(href = null)))
         }
         binding.fragmentListRecyclerView.apply {
             adapter = this@ListFragment.adapter
