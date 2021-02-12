@@ -15,6 +15,7 @@ import es.adriiiprieto.nasaapi.base.BaseExtraData
 import es.adriiiprieto.nasaapi.base.BaseState
 import es.adriiiprieto.nasaapi.base.NetworkManager
 import es.adriiiprieto.nasaapi.base.NoInternetConnectivity
+import es.adriiiprieto.nasaapi.data.model.Item
 import es.adriiiprieto.nasaapi.databinding.FragmentListBinding
 import retrofit2.HttpException
 import java.net.UnknownHostException
@@ -84,7 +85,7 @@ class ListFragment : Fragment() {
     private fun updateToNormalState(data: ListState) {
         binding.fragmentListProgressBar.visibility = View.GONE
         binding.fragmentListSwipeRefreshLayout.isRefreshing = false
-        adapter.updateList((data).picturesList)
+        adapter.updateList(data.picturesList)
     }
 
     /**

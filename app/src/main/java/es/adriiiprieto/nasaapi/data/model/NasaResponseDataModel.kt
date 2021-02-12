@@ -18,7 +18,7 @@ data class Collection(
 data class Item(
     @SerializedName("data")
     val data: List<Data>,
-    val href: String,
+    var href: String?,
     val links: List<Link>
 ) : Serializable
 

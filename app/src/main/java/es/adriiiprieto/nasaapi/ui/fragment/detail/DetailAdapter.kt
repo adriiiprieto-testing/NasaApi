@@ -22,4 +22,9 @@ class DetailAdapter(private var dataSet: List<String>) : RecyclerView.Adapter<De
     }
 
     override fun getItemCount() = dataSet.size
+
+    fun updateList(newList: List<String>) {
+        dataSet = newList
+        notifyDataSetChanged()
+    }
 }
