@@ -3,116 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.list.ListFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.fragment.list.ListFragment">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/fragmentDetailTextViewTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/nunito_bold"
-                android:maxLines="2"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Título de la imagen" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/fragmentDetailViewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
-            <TextView
-                android:id="@+id/fragmentDetailTextViewDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/nunito"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentDetailTextViewTitle"
-                tools:text="2017-09-10T00:00:00Z" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/fragmentDetailImageViewNasa"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_navegador"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentDetailTextViewDate"
-                tools:ignore="ContentDescription" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragmentDetailButtonShowURL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/fragmentDetailButtonShowURLText"
-                app:layout_constraintBottom_toBottomOf="@+id/fragmentDetailImageViewNasa"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fragmentDetailImageViewNasa"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentDetailTextViewDate" />
-
-            <TextView
-                android:id="@+id/fragmentDetailTextViewDescription"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/nunito"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentDetailImageViewNasa"
-                tools:text="On Sept. 10, 2017, the Hinode satellite observed an enormous X-class flare burst from an active region on the western edge of the Sun. The video shows the high-energy flare as seen by Hinode's X-Ray Telescope. The emission was so bright that the initial blast caused the detector to saturate. The giant explosion sent a huge cloud of superhot plasma zooming into interplanetary space -- a phenomenon known as a coronal mass ejection. Studying large flares like this one with a variety of instruments is key to understanding exactly what causes these dramatic eruptions, and one day predicting them before they occur." />
-
-            <TextView
-                android:id="@+id/fragmentDetailTextViewListTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/fragmentDetailTextViewListTitleText"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentDetailTextViewDescription" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragmentDetailRecyclerViewKeywords"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentDetailTextViewListTitle"
-                app:layout_constraintVertical_bias="0.0"
-                tools:listitem="@layout/item_keyword_list" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 </layout>
