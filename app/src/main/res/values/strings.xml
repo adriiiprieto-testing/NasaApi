@@ -5,4 +5,5 @@
     <string name="fragmentDetailButtonShowURLText">Ver URL</string>
     <string name="fragmentDetailTextViewListTitleText">Palabras clave:</string>
     <string name="menuDrawerListFragmentTitle">Lista de imágenes</string>
+    <string name="menuDrawerPagingFragmentTitle">Paginación</string>
 </resources>

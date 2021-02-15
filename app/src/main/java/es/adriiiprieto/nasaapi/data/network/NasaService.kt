@@ -9,5 +9,5 @@ import retrofit2.http.Query
 
 interface NasaService {
     @GET("search")
-    suspend fun getNasaImages(@Query("q") pictureType: String): NasaResponseDataModel
+    suspend fun getNasaImages(@Query("q") pictureType: String, @Query("page") page: Int): NasaResponseDataModel
 }

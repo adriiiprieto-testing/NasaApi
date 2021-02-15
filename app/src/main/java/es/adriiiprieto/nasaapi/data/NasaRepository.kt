@@ -5,8 +5,8 @@ import es.adriiiprieto.nasaapi.data.network.NasaNetwork
 
 class NasaRepository {
 
-    suspend fun requestNasaPictures(pictureType: String): List<Item>{
-        return NasaNetwork().requestNasaImages(pictureType).collection.items
+    suspend fun requestNasaPictures(pictureType: String, page: Int): List<Item>{
+        return NasaNetwork().requestNasaImages(pictureType, page).collection.items
     }
 
 }

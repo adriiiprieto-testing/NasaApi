@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val navController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
 
         // Support top toolbar
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.listFragment), binding.drawerLayout)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.listFragment, R.id.pagingFragment), binding.drawerLayout)
 
         // Custom toolbar
         binding.mainContent.myToolbar.setupWithNavController(navController, appBarConfiguration)

@@ -24,4 +24,14 @@
             android:name="item"
             app:argType="es.adriiiprieto.nasaapi.data.model.Item" />
     </fragment>
+
+    <fragment
+        android:id="@+id/pagingFragment"
+        android:name="es.adriiiprieto.nasaapi.ui.fragment.paging.PagingFragment"
+        android:label="PagingFragment"
+        tools:layout="@layout/fragment_paging" >
+        <action
+            android:id="@+id/action_pagingFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>
