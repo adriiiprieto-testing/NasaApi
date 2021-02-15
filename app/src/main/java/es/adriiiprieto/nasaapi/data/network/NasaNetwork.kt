@@ -20,9 +20,9 @@ class NasaNetwork {
         service = retrofit.create(NasaService::class.java)
     }
 
-    suspend fun requestNasaImages(pictureType: String): NasaResponseDataModel {
+    suspend fun requestNasaImages(pictureType: String, page: Int): NasaResponseDataModel {
         loadRetrofit()
-        return service.getNasaImages(pictureType)
+        return service.getNasaImages(pictureType, page)
     }
 }
 

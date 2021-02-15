@@ -8,4 +8,9 @@
         android:icon="@drawable/ic_list_black_24dp"
         android:title="@string/menuDrawerListFragmentTitle" />
 
+    <item
+        android:id="@+id/pagingFragment"
+        android:icon="@drawable/ic_list_black_24dp"
+        android:title="@string/menuDrawerPagingFragmentTitle" />
+
 </menu>

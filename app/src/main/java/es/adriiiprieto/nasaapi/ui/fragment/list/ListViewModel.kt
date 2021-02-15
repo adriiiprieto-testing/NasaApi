@@ -23,7 +23,7 @@ class ListViewModel(app: Application) : AndroidViewModel(app) {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     state.postValue(BaseState.Loading())
-                    val items = NasaRepository().requestNasaPictures("sun")
+                    val items = NasaRepository().requestNasaPictures("sun", 1)
                     state.postValue(BaseState.Normal(ListState(items)))
                 } catch (e: Exception) {
                     state.postValue(BaseState.Error(e))
